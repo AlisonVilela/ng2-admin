@@ -1,13 +1,9 @@
-import { Routes } from '@angular/router';
 import { Component, ViewContainerRef } from '@angular/core';
 
 import { GlobalState } from './global.state';
 import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/services';
-import { layoutPaths } from './theme/theme.constants';
 import { BaThemeConfig } from './theme/theme.config';
-import { BaMenuService } from './theme';
-
-import { MENU } from './app.menu';
+import { layoutPaths } from './theme/theme.constants';
 
 import 'style-loader!./app.scss';
 import 'style-loader!./theme/initial.scss';
@@ -32,11 +28,10 @@ export class App {
   constructor(private _state: GlobalState,
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
-              private _config: BaThemeConfig,
-              private _menuService: BaMenuService,
-              private viewContainerRef: ViewContainerRef) {
+              private viewContainerRef: ViewContainerRef,
+              private themeConfig: BaThemeConfig) {
 
-    this._menuService.updateMenuByRoutes(<Routes>MENU);
+    themeConfig.config();
 
     this._loadImages();
 
